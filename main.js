@@ -6,7 +6,8 @@ const createWindow = () => {
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.resolve(__dirname, 'preload.js'),
+            preload: path.join(__dirname, 'preload.js'),
+            contextIsolation: true,
         },
     })
 
