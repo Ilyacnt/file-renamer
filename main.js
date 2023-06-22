@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
+const fs = require('fs')
 const path = require('path')
 
 const createWindow = () => {
@@ -15,6 +16,7 @@ const createWindow = () => {
 }
 
 app.whenReady().then(() => {
+    ipcMain.handle('ping', () => readImageFile(path.resolve(__dirname, 'assets', 'TestImage.png')))
     createWindow()
 
     app.on('activate', () => {
@@ -25,3 +27,10 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
 })
+
+
+function readImageFile(filePath) {
+    const buffer = fs.readFileSync(filePath);
+    const data = buffer.toString('base64');
+    return data;
+}

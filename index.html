@@ -2,10 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <meta
-            http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self'"
-        />
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:">
         <meta
             http-equiv="X-Content-Security-Policy"
             content="default-src 'self'; script-src 'self'"
@@ -16,6 +13,7 @@
         <h1>Hello from Electron renderer!</h1>
         <p>👁</p>
         <div id="info"></div>
+        <img id="image"></img>
         <script src="./renderer.js"></script>
     </body>
 </html>
