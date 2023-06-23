@@ -31,7 +31,7 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
 })
 
-function readImageFile(filePath) {
+function readImageFile(filePath: string) {
     const buffer = fs.readFileSync(filePath)
     const data = buffer.toString('base64')
     return data
