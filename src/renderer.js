@@ -4,11 +4,10 @@ const imageNode = document.getElementById('image')
 console.log(versions)
 
 const getBase64Image = async () => {
-  const response = await window.versions.ping()
-  console.log(response) // prints out 'pong'
-  return response
+    const response = await window.versions.ping()
+    console.log(response)
+    return response
 }
-
 
 const setImageToNode = async () => {
     const imageBase64 = await getBase64Image()

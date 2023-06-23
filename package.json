@@ -1,14 +1,21 @@
 {
-  "name": "electron-learning",
-  "version": "1.0.0",
-  "description": "Project for learnig Electron API",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "author": "Ilyacnt",
-  "license": "ISC",
-  "devDependencies": {
-    "electron": "^24.2.0"
-  }
+    "name": "electron-learning",
+    "version": "1.0.0",
+    "description": "Project for learnig Electron API",
+    "main": "./src/main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true,
+        "printWidth": 100
+    },
+    "author": "Ilyacnt",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^24.2.0"
+    }
 }

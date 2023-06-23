@@ -12,11 +12,14 @@ const createWindow = () => {
         },
     })
 
-    win.loadFile('index.html')
+    win.loadFile(path.resolve(__dirname, 'index.html'))
 }
 
 app.whenReady().then(() => {
-    ipcMain.handle('ping', () => readImageFile(path.resolve(__dirname, 'assets', 'TestImage.png')))
+    console.log(path.join(__dirname, '..', 'assets', 'TestImage.png'))
+    ipcMain.handle('ping', () =>
+        readImageFile(path.join(__dirname, '..', 'assets', 'TestImage.png'))
+    )
     createWindow()
 
     app.on('activate', () => {
@@ -28,9 +31,8 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
 })
 
-
 function readImageFile(filePath) {
-    const buffer = fs.readFileSync(filePath);
-    const data = buffer.toString('base64');
-    return data;
+    const buffer = fs.readFileSync(filePath)
+    const data = buffer.toString('base64')
+    return data
 }
