@@ -1,8 +1,7 @@
 const infoNode = document.getElementById('info')
 const imageNode = document.getElementById('image')
 
-// @ts-ignore
-console.log(window.versions)
+console.log(window.versions.node())
 
 const getBase64Image = async () => {
     // @ts-ignore
