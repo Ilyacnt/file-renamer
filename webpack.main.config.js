@@ -2,9 +2,12 @@ const path = require('path')
 const buildPath = path.resolve(__dirname, './dist')
 
 const main = {
-    entry: './src/main/main.ts',
+    entry: {
+        main: './src/main/main.ts',
+        preload: './src/main/preload.ts',
+    },
     output: {
-        filename: 'main.js',
+        filename: '[name].js',
         path: buildPath,
     },
     module: {
