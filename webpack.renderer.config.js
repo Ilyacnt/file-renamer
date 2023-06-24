@@ -9,6 +9,15 @@ const renderer = {
         filename: 'renderer.js',
         path: buildPath,
     },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: 'ts-loader',
+            },
+        ],
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/renderer/index.html',

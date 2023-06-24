@@ -1,19 +1,9 @@
-const infoNode = document.getElementById('info')
-const imageNode = document.getElementById('image')
+const setButton = document.getElementById('btn')
+const titleInput = document.getElementById('title') as HTMLInputElement | null
 
-console.log(window.versions.node())
-
-const getBase64Image = async () => {
-    // @ts-ignore
-    const response = await window.versions.ping()
-    console.log(response)
-    return response
-}
-
-const setImageToNode = async () => {
-    const imageBase64 = await getBase64Image()
-    //@ts-ignore
-    imageNode.src = `data:image/png;base64,${imageBase64}`
-}
-
-setImageToNode()
+setButton &&
+    setButton.addEventListener('click', () => {
+        if (!titleInput) return
+        const title = titleInput.value
+        window.electronAPI.setTitle(title)
+    })

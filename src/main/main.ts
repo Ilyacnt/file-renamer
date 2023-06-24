@@ -1,6 +1,6 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
-const fs = require('fs')
-const path = require('path')
+import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
+import fs from 'fs'
+import path from 'path'
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -10,6 +10,12 @@ const createWindow = () => {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
         },
+    })
+
+    ipcMain.on('set-title', (event: IpcMainEvent, title: string) => {
+        const webContents = event.sender
+        const win = BrowserWindow.fromWebContents(webContents)
+        win && win.setTitle(title)
     })
 
     win.loadFile(path.resolve(__dirname, 'index.html'))
