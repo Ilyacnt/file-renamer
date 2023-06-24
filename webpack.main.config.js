@@ -19,6 +19,9 @@ const main = {
             },
         ],
     },
+    resolve: {
+        extensions: ['.ts', '.js', '.tsx', '.jsx'],
+    },
     target: 'electron-main',
 }
 

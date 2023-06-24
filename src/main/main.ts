@@ -1,6 +1,6 @@
-import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
-import fs from 'fs'
+import { app, BrowserWindow, dialog, ipcMain, IpcMainInvokeEvent } from 'electron'
 import path from 'path'
+import { handleFileOpen } from './filesystem/FileSystem'
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -12,20 +12,12 @@ const createWindow = () => {
         },
     })
 
-    ipcMain.on('set-title', (event: IpcMainEvent, title: string) => {
-        const webContents = event.sender
-        const win = BrowserWindow.fromWebContents(webContents)
-        win && win.setTitle(title)
-    })
+    ipcMain.handle('dialog:open', handleFileOpen)
 
     win.loadFile(path.resolve(__dirname, 'index.html'))
 }
 
 app.whenReady().then(() => {
-    console.log(path.join(__dirname, '..', 'assets', 'TestImage.png'))
-    ipcMain.handle('ping', () =>
-        readImageFile(path.join(__dirname, '..', 'assets', 'TestImage.png'))
-    )
     createWindow()
 
     app.on('activate', () => {
@@ -36,9 +28,3 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
 })
-
-function readImageFile(filePath: string) {
-    const buffer = fs.readFileSync(filePath)
-    const data = buffer.toString('base64')
-    return data
-}

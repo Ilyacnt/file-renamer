@@ -23,6 +23,9 @@ const renderer = {
             template: './src/renderer/index.html',
         }),
     ],
+    resolve: {
+        extensions: ['.ts', '.js', '.tsx', '.jsx'],
+    },
     target: 'electron-renderer',
 }
 

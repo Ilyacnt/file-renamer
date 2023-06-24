@@ -1,5 +1,5 @@
 export interface ElectronAPI {
-    setTitle: (string) => Promise<void>
+    openFile: () => Promise<string>
 }
 
 declare global {

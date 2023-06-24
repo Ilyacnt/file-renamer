@@ -1,9 +1,9 @@
-const setButton = document.getElementById('btn')
+const openFileButton = document.getElementById('btn')
 const titleInput = document.getElementById('title') as HTMLInputElement | null
 
-setButton &&
-    setButton.addEventListener('click', () => {
-        if (!titleInput) return
-        const title = titleInput.value
-        window.electronAPI.setTitle(title)
+openFileButton &&
+    openFileButton.addEventListener('click', () => {
+        window.electronAPI.openFile().then((data) => {
+            console.log(data)
+        })
     })
