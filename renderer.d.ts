@@ -1,5 +1,5 @@
 export interface ElectronAPI {
-    openFile: () => Promise<string>
+    openFile: () => Promise<Buffer>
 }
 
 declare global {

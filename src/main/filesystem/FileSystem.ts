@@ -10,6 +10,7 @@ export function readImageFile(filePath: string) {
 export async function handleFileOpen() {
     const { canceled, filePaths } = await dialog.showOpenDialog({})
     if (!canceled) {
-        return filePaths[0]
+        const result = await fs.promises.readFile(filePaths[0])
+        return result
     }
 }
