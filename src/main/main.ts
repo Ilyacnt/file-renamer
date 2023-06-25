@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, ipcMain, IpcMainInvokeEvent, Menu } from 'electron'
+import { app, BrowserWindow, globalShortcut, ipcMain, Menu } from 'electron'
 import path from 'path'
 import { handleFileOpen } from './filesystem/FileSystem'
 
@@ -27,11 +27,17 @@ const createWindow = () => {
                     label: 'Decrement',
                     click: () => win.webContents.send('update-counter', -1),
                 },
+                {
+                    label: 'DevTools',
+                    click: () => win.webContents.openDevTools(),
+                },
             ],
         },
     ])
 
     Menu.setApplicationMenu(menu)
+
+    win.on('ready-to-show', () => win.webContents.openDevTools())
     win.loadFile(path.resolve(__dirname, 'index.html'))
 }
 
@@ -39,11 +45,15 @@ app.whenReady().then(() => {
     createWindow()
 
     ipcMain.on('counter-value', (_event, value) => {
-        console.log(value) // will print value to Node console
+        console.log(value)
     })
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    })
+
+    globalShortcut.register('CmdOrCtrl+Q', () => {
+        app.quit()
     })
 })
 
