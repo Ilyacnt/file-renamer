@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self' 'unsafe-eval';img-src 'self' data:"
+            content="default-src 'unsafe-inline'; script-src 'self' 'unsafe-eval';img-src 'self' data:"
         />
 
         <meta
@@ -14,8 +14,6 @@
         <title>Hello from Electron renderer!</title>
     </head>
     <body>
-        Title: <input id="title" />
-        <button id="btn" type="button">Open File</button>
-        Current value: <strong id="counter">0</strong>
+        <div id="root"></div>
     </body>
 </html>

@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const buildPath = path.resolve(__dirname, './dist')
 
 const renderer = {
-    entry: './src/renderer/renderer.ts',
+    entry: './src/renderer/renderer.tsx',
     output: {
         filename: 'renderer.js',
         path: buildPath,
@@ -15,6 +15,25 @@ const renderer = {
                 test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: 'ts-loader',
+            },
+            {
+                test: /\.jsx?$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        exclude: /node_modules/,
+                        presets: ['@babel/env', '@babel/preset-react', '@babel/preset-typescript'],
+                        plugins: ['@babel/plugin-proposal-class-properties'],
+                    },
+                },
+            },
+            {
+                test: /\.(css|scss)$/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
+                use: ['file-loader'],
             },
         ],
     },

@@ -13,8 +13,6 @@ const createWindow = () => {
         },
     })
 
-    ipcMain.handle('dialog:open', handleFileOpen)
-
     const menu = Menu.buildFromTemplate([
         {
             label: app.name,
@@ -47,6 +45,8 @@ app.whenReady().then(() => {
     ipcMain.on('counter-value', (_event, value) => {
         console.log(value)
     })
+
+    ipcMain.handle('dialog:open', handleFileOpen)
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
