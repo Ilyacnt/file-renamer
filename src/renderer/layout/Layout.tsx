@@ -1,5 +1,7 @@
+import styles from './Layout.module.css'
+
 const Layout = () => {
-    return <div>Layout</div>
+    return <div className={styles.Layout}>Layout</div>
 }
 
 export default Layout
