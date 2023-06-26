@@ -1,0 +1,55 @@
+.Item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: var(--secondary-color);
+    padding: 10px;
+    width: 100%;
+}
+
+.Item:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.Item:active {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.Selected {
+    outline: 2px solid var(--primary-color);
+}
+
+.Heading {
+    display: flex;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 5px;
+}
+
+.Bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    padding: 0px 0px 0px 25px;
+}
+
+.Name {
+    whitespace: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Description {
+    opacity: 0.6;
+    font-size: 12px;
+}
+
+.Buttons {
+    display: flex;
+    gap: 5px;
+}
