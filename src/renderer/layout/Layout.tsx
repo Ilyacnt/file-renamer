@@ -4,6 +4,7 @@ import OverviewHeader from './OverviewHeader/OverviewHeader'
 import OverviewMenu from './OverviewMenu/OverviewMenu'
 import FilePage from '../pages/FilePage/FilePage'
 import NamingPage from '../pages/NamingPage/NamingPage'
+import OverviewItemList from './OverviewItemList/OverviewItemList'
 
 const Layout = () => {
     return (
@@ -11,7 +12,7 @@ const Layout = () => {
             <div className={styles.Owerview}>
                 <OverviewHeader />
                 <div className={styles.DivideLine} />
-                <div className={styles.Items}>Items Here</div>
+                <OverviewItemList />
                 <div className={styles.DivideLine} />
                 <OverviewMenu />
             </div>
