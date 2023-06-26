@@ -10,7 +10,7 @@ const FilePage = () => {
                 <InputPageName />
                 <ImageGallery />
             </div>
-            <ItemControls />
+            <ItemControls type="files" />
         </>
     )
 }
