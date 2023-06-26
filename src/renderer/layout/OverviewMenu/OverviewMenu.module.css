@@ -11,12 +11,28 @@
 .Item {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 5px;
+    cursor: pointer;
     border-radius: 5px;
     padding: 5px;
     width: 43px;
+    user-select: none;
+}
+
+.Item p {
+    leading-trim: both;
+    text-edge: cap;
+    font-size: 9px;
+}
+
+.Item:hover {
+    background: #1a1825;
+}
+
+.Item:active {
+    background: #2c2a36;
 }
 
 .Selected {
