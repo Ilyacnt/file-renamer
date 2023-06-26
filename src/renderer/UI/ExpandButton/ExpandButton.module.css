@@ -1,0 +1,12 @@
+.ExpandButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4.852px;
+    padding: 5px;
+}
+
+.ExpandButton:hover {
+    background: var(--secondary-color);
+}

@@ -1,6 +1,5 @@
-.FilePage {
+.ItemControls {
     display: flex;
-    flex: 1 0 0;
     flex-direction: column;
     align-items: center;
     align-self: stretch;
@@ -9,4 +8,12 @@
     border-radius: 5px;
     background: rgba(30, 30, 30, 0.5);
     padding: 10px;
+}
+
+.ControlsButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
 }

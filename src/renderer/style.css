@@ -6,6 +6,8 @@
 
 :root {
     --text-color: white;
+    --primary-color: #3c8aff;
+    --secondary-color: rgba(255, 255, 255, 0.2);
     --background-main-window: linear-gradient(180deg, #343434 0%, #38354e 99.99%, #35424f 100%);
 }
 
