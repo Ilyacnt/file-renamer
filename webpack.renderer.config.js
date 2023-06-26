@@ -1,13 +1,13 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const buildPath = path.resolve(__dirname, './dist')
+const buildRendererPath = path.resolve(__dirname, './dist')
 
 const renderer = {
     entry: './src/renderer/renderer.tsx',
     output: {
         filename: 'renderer.js',
-        path: buildPath,
+        path: buildRendererPath,
     },
     module: {
         rules: [
@@ -31,9 +31,14 @@ const renderer = {
                 test: /\.(css|scss)$/,
                 use: ['style-loader', 'css-loader'],
             },
+            // {
+            //     test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
+            //     use: ['file-loader'],
+            // },
             {
-                test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-                use: ['file-loader'],
+                test: /\.svg$/i,
+                issuer: /\.[jt]sx?$/,
+                use: ['@svgr/webpack'],
             },
         ],
     },
@@ -43,6 +48,9 @@ const renderer = {
         }),
     ],
     resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src', 'renderer'),
+        },
         extensions: ['.ts', '.js', '.tsx', '.jsx'],
     },
     target: 'electron-renderer',

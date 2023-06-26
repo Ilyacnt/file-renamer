@@ -1,3 +1,29 @@
+@font-face {
+    src: url('./assets/Gilroy-Medium.ttf') format('truetype'),
+        url('./assets/Gilroy-SemiBold.ttf') format('truetype');
+    font-family: 'Gilroy';
+}
+
+:root {
+    --text-color: white;
+    --background-main-window: linear-gradient(180deg, #343434 0%, #38354e 99.99%, #35424f 100%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    font-size: 14px;
+    font-family: 'Gilroy', sans-serif;
+}
+
+html,
+body,
+#root {
+    height: 100vh;
+}
+
 body {
-    background-color: blanchedalmond;
+    background: var(--background-main-window);
 }

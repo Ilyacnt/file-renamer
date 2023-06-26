@@ -1,0 +1,24 @@
+.OverviewMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+}
+
+.Item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 43px;
+}
+
+.Selected {
+    background: #2c2a36;
+}

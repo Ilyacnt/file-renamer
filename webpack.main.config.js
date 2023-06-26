@@ -1,4 +1,5 @@
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const buildPath = path.resolve(__dirname, './dist')
 
 const main = {
@@ -19,6 +20,7 @@ const main = {
             },
         ],
     },
+    plugins: [new CleanWebpackPlugin()],
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.jsx'],
     },
