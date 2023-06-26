@@ -5,9 +5,7 @@ import Layout from './layout/Layout'
 
 const App = () => (
     <MemoryRouter>
-        <Routes>
-            <Route path="/" element={<Layout />} />
-        </Routes>
+        <Layout />
     </MemoryRouter>
 )
 

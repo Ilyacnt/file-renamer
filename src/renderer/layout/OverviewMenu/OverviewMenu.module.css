@@ -8,6 +8,10 @@
     padding: 5px;
 }
 
+.OverviewMenu a {
+    text-decoration: none;
+}
+
 .Item {
     display: flex;
     flex-direction: column;
