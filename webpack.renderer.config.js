@@ -29,7 +29,17 @@ const renderer = {
             },
             {
                 test: /\.(css|scss)$/,
-                use: ['style-loader', 'css-loader'],
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: '[name]_[local]_[hash:base64:5]',
+                            },
+                        },
+                    },
+                ],
             },
             // {
             //     test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
