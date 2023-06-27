@@ -1,9 +1,21 @@
 import Item from '../../../components/Item/Item'
 
+const mockNamings = [
+    { id: 1, name: 'Animals', description: 'Naming for animals' },
+    { id: 2, name: 'Kitties', description: 'Naming for kitties' },
+]
+
 const NamingItems = () => {
     return (
         <>
-            <Item type="naming" />
+            {mockNamings.map((naming) => (
+                <Item
+                    type="naming"
+                    key={naming.id}
+                    name={naming.name}
+                    description={naming.description}
+                />
+            ))}
         </>
     )
 }
