@@ -1,0 +1,31 @@
+.MicroButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.Secondary {
+    background: var(--secondary-color);
+}
+
+.Secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.Secondary:active {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.Ghosty {
+    background: none;
+}
+
+.Ghosty:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.Ghosty:active {
+    background: rgba(255, 255, 255, 0.5);
+}

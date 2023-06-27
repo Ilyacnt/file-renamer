@@ -2,6 +2,9 @@ import styles from './Item.module.css'
 import FileIcon from '@/assets/file.svg'
 import NamingIcon from '@/assets/naming.svg'
 import cn from 'classnames'
+import MicroButton from '../../UI/MicroButton/MicroButton'
+import CaretRightIcon from '@/assets/caret-right.svg'
+import DeleteCrossIcon from '@/assets/delete-cross.svg'
 
 const Item = ({ type, selected = false }: ItemProps) => {
     return (
@@ -12,7 +15,14 @@ const Item = ({ type, selected = false }: ItemProps) => {
             </div>
             <div className={styles.Bottom}>
                 <p className={styles.Description}>Description</p>
-                <div className={styles.Buttons}>Btns</div>
+                <div className={styles.Buttons}>
+                    <MicroButton type="ghosty">
+                        <DeleteCrossIcon />
+                    </MicroButton>
+                    <MicroButton type="secondary">
+                        <CaretRightIcon />
+                    </MicroButton>
+                </div>
             </div>
         </div>
     )
