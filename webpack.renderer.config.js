@@ -33,11 +33,11 @@ const renderer = {
                     'style-loader',
                     {
                         loader: 'css-loader',
-                        options: {
-                            modules: {
-                                localIdentName: '[name]_[local]_[hash:base64:5]',
-                            },
-                        },
+                        // options: {
+                        //     modules: {
+                        //         localIdentName: '[name]_[local]_[hash:base64:5]',
+                        //     },
+                        // },
                     },
                 ],
             },
