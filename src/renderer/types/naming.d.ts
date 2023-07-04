@@ -1,4 +1,5 @@
 export interface NamingItem {
+    id: string
     name: string
     description: string
     constructorProperties: CounsctructorProperty[]
