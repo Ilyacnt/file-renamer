@@ -1,0 +1,128 @@
+#+title: file-renamer _(pet project)_
+
+#+begin_html
+<p align="center">
+		<img src="https://img.shields.io/github/stars/Ilyacnt/file-renamer?color=e57474&labelColor=1e2528&style=for-the-badge"> <img src="https://img.shields.io/github/issues/Ilyacnt/file-renamer?color=67b0e8&labelColor=1e2528&style=for-the-badge">
+		<img src="https://img.shields.io/static/v1?label=license&message=MIT&color=8ccf7e&labelColor=1e2528&style=for-the-badge">
+		<img src="https://img.shields.io/github/forks/Ilyacnt/file-renamer?color=e5c76b&labelColor=1e2528&style=for-the-badge">
+</p>
+
+<div align="center">
+		<i><b>file-renamer</b> is a lightweight application that allows users to rename files using custom namings. It is built with React and Electron, providing a user-friendly interface for efficient file renaming.</i>
+    <br></br>
+</div>
+
+#+end_html
+
+*** Installation
+
+To install the necessary dependencies, run the following command: =npm install=
+
+*** Scripts
+
+The following scripts are available:
++ =build=: Builds the application in production mode using Webpack.
+
++ =build:main=: Builds the main process using Webpack and development mode configuration.
+
++ =build:renderer=: Builds the renderer process using Webpack and development mode configuration.
+
++ =build:all=: Builds both the main and renderer processes by running `build:main` and `build:renderer` scripts.
+
++ =start=: Builds all processes (`build:all`) and starts the Electron application.
+*** Folders structure
+#+begin_src bash
+  .
+  ├── README.org
+  ├── package-lock.json
+  ├── package.json
+  ├── renderer.d.ts
+  ├── src
+  │   ├── main
+  │   │   ├── filesystem
+  │   │   │   └── FileSystem.ts
+  │   │   ├── main.ts <~~~~~~~~~~~~~~~~~~~~~~~~~~~| Main script of Electron-application. Process of rendering, modules, etc.
+  │   │   └── preload.ts <~~~~~~~~~~~~~~~~~~~~~~~~| A script which is executed in a separate window context before the rendering page is loaded
+  │   └── renderer
+  │       ├── UI
+  │       │   ├── Button
+  │       │   │   ├── Button.module.css
+  │       │   │   └── Button.tsx
+  │       │   ├── ExpandButton
+  │       │   │   ├── ExpandButton.module.css
+  │       │   │   └── ExpandButton.tsx
+  │       │   ├── InputPageName
+  │       │   │   ├── InputPageName.module.css
+  │       │   │   └── InputPageName.tsx
+  │       │   └── MicroButton
+  │       │       ├── MicroButton.module.css
+  │       │       └── MicroButton.tsx
+  │       ├── assets <~~~~~~~~~~~~~~~~~~~~~~~~~~~~| Directory with images, fonts, etc.
+  │       │   ├── Gilroy-Medium.ttf
+  │       │   ├── Gilroy-SemiBold.ttf
+  │       │   ├── caret-down.svg
+  │       │   ├── caret-left.svg
+  │       │   ├── caret-right.svg
+  │       │   ├── caret-up.svg
+  │       │   ├── circle-save.svg
+  │       │   ├── copy.svg
+  │       │   ├── delete-cross.svg
+  │       │   ├── edit.svg
+  │       │   ├── file.svg
+  │       │   ├── naming.svg
+  │       │   └── setting.svg
+  │       ├── components <~~~~~~~~~~~~~~~~~~~~~~~~| Directory with main components of application
+  │       │   ├── ImageGallery
+  │       │   │   ├── ImageGallery.module.css
+  │       │   │   └── ImageGallery.tsx
+  │       │   ├── Item
+  │       │   │   ├── Item.module.css
+  │       │   │   └── Item.tsx
+  │       │   └── ItemControls
+  │       │       ├── ItemControls.module.css
+  │       │       └── ItemControls.tsx
+  │       ├── index.html
+  │       ├── layout <~~~~~~~~~~~~~~~~~~~~~~~~~~~~| Main HTML-file for rendering process. Linked with render.tsx file 
+  │       │   ├── Layout.module.css
+  │       │   ├── Layout.tsx
+  │       │   ├── OverviewHeader
+  │       │   │   ├── OverviewHeader.module.css
+  │       │   │   └── OverviewHeader.tsx
+  │       │   ├── OverviewItemList
+  │       │   │   ├── OverviewItemList.module.css
+  │       │   │   └── OverviewItemList.tsx
+  │       │   └── OverviewMenu
+  │       │       ├── OverviewMenu.module.css
+  │       │       └── OverviewMenu.tsx
+  │       ├── pages <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| Pages of Electron-application
+  │       │   ├── FilePage
+  │       │   │   ├── FileItems
+  │       │   │   │   └── FileItems.tsx
+  │       │   │   ├── FilePage.module.css
+  │       │   │   └── FilePage.tsx
+  │       │   └── NamingPage
+  │       │       ├── NamingItems
+  │       │       │   └── NamingItems.tsx
+  │       │       ├── NamingPage.module.css
+  │       │       └── NamingPage.tsx
+  │       ├── renderer.tsx <~~~~~~~~~~~~~~~~~~~~~~| Rendering
+  │       ├── store <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| Redux store
+  │       │   ├── files
+  │       │   │   └── filesSlice.ts
+  │       │   ├── hooks.ts
+  │       │   ├── namings
+  │       │   │   └── namingsSlice.ts
+  │       │   └── store.ts
+  │       ├── style.css
+  │       └── types
+  │           ├── file.d.ts
+  │           ├── naming.d.ts
+  │           └── pages.d.ts
+  ├── tsconfig.json
+  ├── typings.d.ts
+  ├── webpack.config.js
+  ├── webpack.main.config.js
+  └── webpack.renderer.config.js
+
+  28 directories, 64 files
+#+end_src
