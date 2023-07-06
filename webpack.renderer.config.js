@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+const { HotModuleReplacementPlugin } = require('webpack')
 const buildRendererPath = path.resolve(__dirname, './dist')
 
 const renderer = {
@@ -52,10 +52,12 @@ const renderer = {
             },
         ],
     },
+    devtool: 'inline-source-map',
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/renderer/index.html',
         }),
+        new HotModuleReplacementPlugin(),
     ],
     resolve: {
         alias: {
@@ -64,6 +66,12 @@ const renderer = {
         extensions: ['.ts', '.js', '.tsx', '.jsx'],
     },
     target: 'electron-renderer',
+    devServer: {
+        static: {
+            directory: buildRendererPath,
+        },
+        hot: true,
+    },
 }
 
 module.exports = renderer

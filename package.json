@@ -4,11 +4,12 @@
     "description": "Project for learnig Electron API",
     "main": "./dist/main.js",
     "scripts": {
-        "build": "webpack --mode=production",
-        "build:main": "webpack --mode development --config webpack.main.config.js",
-        "build:renderer": "webpack --mode development --config webpack.renderer.config.js",
+        "build": "webpack --config webpack.config.js --mode=production",
+        "build:main": "webpack --mode=development --config webpack.main.config.js",
+        "build:renderer": "webpack --mode=development --config webpack.renderer.config.js",
         "build:all": "npm run build:main && npm run build:renderer",
-        "start": "npm run build:all && electron ."
+        "webpack:serve": "webpack serve --config webpack.renderer.config.js --mode development",
+        "start": "npm run build:main && concurrently \"npm run webpack:serve\" \"electron .\""
     },
     "prettier": {
         "trailingComma": "es5",
@@ -31,6 +32,7 @@
         "@types/react-dom": "^18.2.6",
         "babel-loader": "^9.1.2",
         "clean-webpack-plugin": "^4.0.0",
+        "concurrently": "^8.2.0",
         "css-loader": "^6.8.1",
         "electron": "^24.2.0",
         "file-loader": "^6.2.0",
@@ -42,10 +44,12 @@
         "ts-loader": "^9.4.3",
         "typescript-plugin-css-modules": "^5.0.1",
         "webpack": "^5.88.0",
-        "webpack-cli": "^5.1.4"
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^4.15.1"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.9.5",
+        "child_process": "^1.0.2",
         "classnames": "^2.3.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

@@ -2,6 +2,8 @@ import { app, BrowserWindow, globalShortcut, ipcMain, Menu } from 'electron'
 import path from 'path'
 import { handleFileOpen } from './filesystem/FileSystem'
 
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 1000,
@@ -37,8 +39,13 @@ const createWindow = () => {
 
     Menu.setApplicationMenu(menu)
 
-    win.on('ready-to-show', () => win.webContents.openDevTools())
-    win.loadFile(path.resolve(__dirname, 'index.html'))
+    if (isDevelopment) {
+        win.on('ready-to-show', () => win.webContents.openDevTools())
+        win.loadURL('http://localhost:8080')
+    } else {
+        win.on('ready-to-show', () => win.webContents.openDevTools())
+        win.loadFile(path.resolve(__dirname, 'index.html'))
+    }
 }
 
 app.whenReady().then(() => {
