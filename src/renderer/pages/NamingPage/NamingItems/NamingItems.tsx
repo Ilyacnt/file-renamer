@@ -1,5 +1,8 @@
 import { useAppSelector } from '@/store/hooks'
 import Item from '../../../components/Item/Item'
+import styles from './NamingItems.module.css'
+import Button from '@/UI/Button/Button'
+import PlusIcon from '@/assets/plus.svg'
 
 const NamingItems = () => {
     const { namings } = useAppSelector((state) => state.namings)
@@ -15,6 +18,9 @@ const NamingItems = () => {
                     description={naming.description}
                 />
             ))}
+            <Button className={styles.PlusIcon} type="ghosty">
+                <PlusIcon />
+            </Button>
         </>
     )
 }
