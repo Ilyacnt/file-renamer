@@ -7,6 +7,12 @@ import { useAppSelector } from '@/store/hooks'
 const FileItems = () => {
     const { files } = useAppSelector((state) => state.files)
 
+    const fileReadHandler = () => {
+        window.electronAPI.openDialog().then((response) => {
+            console.log(response)
+        })
+    }
+
     return (
         <>
             {files.map((file) => (
@@ -18,7 +24,7 @@ const FileItems = () => {
                     description={file.size}
                 />
             ))}
-            <Button className={styles.PlusIcon} type="ghosty">
+            <Button className={styles.PlusIcon} type="ghosty" onClick={fileReadHandler}>
                 <PlusIcon />
             </Button>
         </>
