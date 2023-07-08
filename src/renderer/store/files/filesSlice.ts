@@ -12,19 +12,19 @@ const mockData: FileItem[] = [
         id: '1',
         name: 'File1',
         size: '2MB',
-        type: 'other',
+        type: { ext: 'png', mime: 'image/png' },
     },
     {
         id: '2',
         name: 'ImageFile',
         size: '1.5MB',
-        type: 'image',
+        type: { ext: 'png', mime: 'image/png' },
     },
     {
         id: '3',
         name: 'VideoFile',
         size: '10MB',
-        type: 'video',
+        type: { ext: 'png', mime: 'image/png' },
     },
 ]
 

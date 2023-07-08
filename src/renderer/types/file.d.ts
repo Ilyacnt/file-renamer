@@ -1,9 +1,9 @@
+import { FileTypeResult } from 'file-type'
+
 export interface FileItem {
     id: string
     name: string
     size: string
-    type: FileType
+    type: FileTypeResult
     blob?: Blob
 }
-
-export type FileType = 'image' | 'video' | 'other'
