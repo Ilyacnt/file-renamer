@@ -10,7 +10,13 @@ const FileItems = () => {
     return (
         <>
             {files.map((file) => (
-                <Item type="file" key={file.id} name={file.name} description={file.size} />
+                <Item
+                    type="file"
+                    key={file.id}
+                    id={file.id}
+                    name={file.name}
+                    description={file.size}
+                />
             ))}
             <Button className={styles.PlusIcon} type="ghosty">
                 <PlusIcon />
