@@ -5,8 +5,26 @@ interface NamingsState {
     namings: NamingItem[]
 }
 
+const mockData: NamingItem[] = [
+    {
+        id: '1',
+        description: 'lorem ipsum',
+        name: 'Naming 1',
+    },
+    {
+        id: '2',
+        description: 'dolor sit tmer',
+        name: 'Naming 2',
+    },
+    {
+        id: '3',
+        description: 'amet pas et',
+        name: 'Naming 3',
+    },
+]
+
 const initialState: NamingsState = {
-    namings: [],
+    namings: mockData,
 }
 
 const namingsSlice = createSlice({
@@ -16,8 +34,8 @@ const namingsSlice = createSlice({
         addNaming: (state, action: PayloadAction<NamingItem>) => {
             state.namings.push(action.payload)
         },
-        removeNaming: (state, action: PayloadAction<NamingItem>) => {
-            state.namings = state.namings.filter((naming) => naming.id !== action.payload.id)
+        removeNaming: (state, action: PayloadAction<string>) => {
+            state.namings = state.namings.filter((naming) => naming.id !== action.payload)
         },
     },
 })

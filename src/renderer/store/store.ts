@@ -1,9 +1,11 @@
 import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit'
 import { filesReducer } from './files/filesSlice'
+import { namingsReducer } from './namings/namingsSlice'
 
-const store = configureStore({
+export const store = configureStore({
     reducer: {
         files: filesReducer,
+        namings: namingsReducer,
     },
 })
 

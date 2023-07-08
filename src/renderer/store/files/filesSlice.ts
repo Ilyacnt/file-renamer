@@ -7,8 +7,29 @@ export interface FilesState {
     error: string | null
 }
 
+const mockData: FileItem[] = [
+    {
+        id: '1',
+        name: 'File1',
+        size: '2MB',
+        type: 'other',
+    },
+    {
+        id: '2',
+        name: 'ImageFile',
+        size: '1.5MB',
+        type: 'image',
+    },
+    {
+        id: '3',
+        name: 'VideoFile',
+        size: '10MB',
+        type: 'video',
+    },
+]
+
 const initialState: FilesState = {
-    files: [],
+    files: mockData,
     loading: false,
     error: null,
 }
@@ -29,8 +50,15 @@ const filesSlice = createSlice({
             state.loading = false
             state.error = action.payload
         },
+        addFile: (state, action: PayloadAction<FileItem>) => {
+            state.files.push(action.payload)
+        },
+        removeFile: (state, action: PayloadAction<string>) => {
+            state.files = state.files.filter((item) => item.id !== action.payload)
+        },
     },
 })
 
-export const { getFilesStart, getFilesSucces, getFilesFailure } = filesSlice.actions
+export const { getFilesStart, getFilesSucces, getFilesFailure, addFile, removeFile } =
+    filesSlice.actions
 export const filesReducer = filesSlice.reducer
