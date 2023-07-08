@@ -3,7 +3,7 @@ export interface FileItem {
     name: string
     size: string
     type: FileType
-    blob: Blob
+    blob?: Blob
 }
 
 export type FileType = 'image' | 'video' | 'other'

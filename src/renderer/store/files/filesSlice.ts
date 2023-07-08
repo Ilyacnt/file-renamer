@@ -7,8 +7,29 @@ export interface FilesState {
     error: string | null
 }
 
+const mockData: FileItem[] = [
+    {
+        id: '1',
+        name: 'File1',
+        size: '2MB',
+        type: 'other',
+    },
+    {
+        id: '2',
+        name: 'ImageFile',
+        size: '1.5MB',
+        type: 'image',
+    },
+    {
+        id: '3',
+        name: 'VideoFile',
+        size: '10MB',
+        type: 'video',
+    },
+]
+
 const initialState: FilesState = {
-    files: [],
+    files: mockData,
     loading: false,
     error: null,
 }
