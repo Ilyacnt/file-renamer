@@ -7,6 +7,7 @@ import CaretRightIcon from '@/assets/caret-right.svg'
 import DeleteCrossIcon from '@/assets/delete-cross.svg'
 import { useAppDispatch } from '@/store/hooks'
 import { removeFile } from '@/store/files/filesSlice'
+import { removeNaming } from '@/store/namings/namingsSlice'
 
 const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
     const dispatch = useAppDispatch()
@@ -14,6 +15,8 @@ const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
     const deleteHandler = (id: string) => {
         if (type === 'file') {
             dispatch(removeFile(id))
+        } else if (type === 'naming') {
+            dispatch(removeNaming(id))
         }
     }
 

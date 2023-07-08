@@ -1,14 +1,12 @@
+import { useAppSelector } from '@/store/hooks'
 import Item from '../../../components/Item/Item'
 
-const mockNamings = [
-    { id: '1', name: 'Animals', description: 'Naming for animals' },
-    { id: '2', name: 'Kitties', description: 'Naming for kitties' },
-]
-
 const NamingItems = () => {
+    const { namings } = useAppSelector((state) => state.namings)
+
     return (
         <>
-            {mockNamings.map((naming) => (
+            {namings.map((naming) => (
                 <Item
                     id={naming.id}
                     type="naming"
