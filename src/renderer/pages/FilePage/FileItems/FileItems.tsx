@@ -1,4 +1,7 @@
+import Button from '../../../UI/Button/Button'
 import Item from '../../../components/Item/Item'
+import PlusIcon from '@/assets/plus.svg'
+import styles from './FileItems.module.css'
 
 const mockFiles = [
     { id: 1, name: 'Capybara.png', fileSize: '10MB' },
@@ -12,6 +15,9 @@ const FileItems = () => {
             {mockFiles.map((file) => (
                 <Item type="file" key={file.id} name={file.name} description={file.fileSize} />
             ))}
+            <Button className={styles.PlusIcon} type="ghosty">
+                <PlusIcon />
+            </Button>
         </>
     )
 }

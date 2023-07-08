@@ -1,14 +1,16 @@
-import { ReactNode } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 import styles from './Button.module.css'
 import cn from 'classnames'
 
-const Button = ({ type, children }: ButtonProps) => {
+const Button = ({ type, className, children, onClick }: ButtonProps) => {
     return (
         <button
-            className={cn(styles.Button, {
+            className={cn(styles.Button, className, {
                 [styles.Primary]: type === 'primary',
                 [styles.Secondary]: type === 'secondary',
+                [styles.Ghosty]: type === 'ghosty',
             })}
+            onClick={onClick}
         >
             {children}
         </button>
@@ -17,7 +19,7 @@ const Button = ({ type, children }: ButtonProps) => {
 
 export default Button
 
-interface ButtonProps {
-    type: 'primary' | 'secondary'
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+    type: 'primary' | 'secondary' | 'ghosty'
     children: ReactNode | ReactNode[]
 }

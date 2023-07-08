@@ -34,3 +34,16 @@
 .Secondary:active {
     background: rgba(255, 255, 255, 0.5);
 }
+
+.Ghosty {
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.Ghosty:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.Ghosty:active {
+    background: rgba(255, 255, 255, 0.5);
+}
