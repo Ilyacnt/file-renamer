@@ -4,6 +4,7 @@ import { Stats } from 'original-fs'
 import { FileTypeResult, fileTypeFromBuffer } from 'file-type'
 import { v4 as uuidv4 } from 'uuid'
 import { dialog } from 'electron'
+import { extname } from 'path'
 
 class FileSystemOS {
     constructor() {}
@@ -29,7 +30,18 @@ class FileSystemOS {
             const stats: Stats = await fs.stat(filePath)
             const fileSizeInBytes = stats.size
             const fileSizeInMegabytes = (fileSizeInBytes / (1024 * 1024)).toFixed(2) + 'MB'
-            const fileType: FileTypeResult | undefined = await fileTypeFromBuffer(buffer)
+
+            const fileExtension = extname(filePath).toLowerCase()
+
+            let fileType: FileTypeResult | undefined
+            if (fileExtension === '.txt') {
+                // TS IGNORED BECAUSE LIBRARY DOESN'T SUPPORT TXT FORMAT
+                //@ts-ignore
+                fileType = { ext: 'txt', mime: 'text/plain' }
+            } else {
+                fileType = await fileTypeFromBuffer(buffer)
+            }
+
             if (!fileType) throw new Error('Unable to read file type')
             result = {
                 id: uuidv4(),
