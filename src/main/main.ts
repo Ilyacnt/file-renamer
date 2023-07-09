@@ -1,6 +1,5 @@
 import { app, BrowserWindow, globalShortcut, ipcMain, Menu } from 'electron'
 import path from 'path'
-import { handleFileOpen } from './filesystem/FileSystem'
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -47,8 +46,6 @@ app.whenReady().then(() => {
     ipcMain.on('counter-value', (_event, value) => {
         console.log(value)
     })
-
-    ipcMain.handle('dialog:open', handleFileOpen)
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
