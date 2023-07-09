@@ -26,8 +26,8 @@ class FileSystemOS {
         try {
             let result
             const buffer: Buffer = await fs.readFile(filePath)
-            console.log(buffer)
             const stats: Stats = await fs.stat(filePath)
+            const fileName = filePath.split('/').pop() as string
             const fileSizeInBytes = stats.size
             const fileSizeInMegabytes = (fileSizeInBytes / (1024 * 1024)).toFixed(2) + 'MB'
 
@@ -45,10 +45,11 @@ class FileSystemOS {
             if (!fileType) throw new Error('Unable to read file type')
             result = {
                 id: uuidv4(),
-                name: filePath.split('/').pop() as string,
+                name: fileName,
                 size: fileSizeInMegabytes,
                 type: fileType,
-                buffer,
+                pathToFile: filePath,
+                // buffer,
             }
             return result
         } catch (error) {

@@ -5,5 +5,6 @@ export interface FileItem {
     name: string
     size: string
     type: FileTypeResult
+    pathToFile: string
     buffer?: Buffer
 }
