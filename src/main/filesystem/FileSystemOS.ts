@@ -6,17 +6,29 @@ import { v4 as uuidv4 } from 'uuid'
 import { dialog } from 'electron'
 
 class FileSystemOS {
-    files: FileItem[] = []
-
     constructor() {}
+
+    async readFiles(filesPaths: string[]): Promise<FileItem[]> {
+        let result: FileItem[] = []
+        for (let path of filesPaths) {
+            try {
+                let file = await this.readFile(path)
+                result.push(file)
+            } catch (error: any) {
+                throw new Error(error.message)
+            }
+        }
+        return result
+    }
 
     async readFile(filePath: string): Promise<FileItem> {
         try {
             let result
             const buffer: Buffer = await fs.readFile(filePath)
+            console.log(buffer)
             const stats: Stats = await fs.stat(filePath)
             const fileSizeInBytes = stats.size
-            const fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024) + 'MB'
+            const fileSizeInMegabytes = (fileSizeInBytes / (1024 * 1024)).toFixed(2) + 'MB'
             const fileType: FileTypeResult | undefined = await fileTypeFromBuffer(buffer)
             if (!fileType) throw new Error('Unable to read file type')
             result = {
@@ -24,11 +36,11 @@ class FileSystemOS {
                 name: filePath.split('/').pop() as string,
                 size: fileSizeInMegabytes,
                 type: fileType,
-                blob: new Blob([buffer]),
+                buffer,
             }
             return result
         } catch (error) {
-            throw new Error('Unable to read file')
+            throw new Error('Unable to read file' + filePath)
         }
     }
 

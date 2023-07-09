@@ -5,5 +5,5 @@ export interface FileItem {
     name: string
     size: string
     type: FileTypeResult
-    blob?: Blob
+    buffer?: Buffer
 }

@@ -1,7 +1,7 @@
 import { IpcMainEvent } from 'electron'
 
 export interface ElectronAPI {
-    readFiles: (filePaths: string[]) => Promise<string>
+    readFiles: (filePaths: string[]) => Promise<FileItem[]>
     openDialog: () => Promise<string[] | null>
 }
 

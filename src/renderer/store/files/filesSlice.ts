@@ -50,8 +50,8 @@ const filesSlice = createSlice({
             state.loading = false
             state.error = action.payload
         },
-        addFile: (state, action: PayloadAction<FileItem>) => {
-            state.files.push(action.payload)
+        addFiles: (state, action: PayloadAction<FileItem[]>) => {
+            state.files = [...state.files, ...action.payload]
         },
         removeFile: (state, action: PayloadAction<string>) => {
             state.files = state.files.filter((item) => item.id !== action.payload)
@@ -59,6 +59,6 @@ const filesSlice = createSlice({
     },
 })
 
-export const { getFilesStart, getFilesSucces, getFilesFailure, addFile, removeFile } =
+export const { getFilesStart, getFilesSucces, getFilesFailure, addFiles, removeFile } =
     filesSlice.actions
 export const filesReducer = filesSlice.reducer
