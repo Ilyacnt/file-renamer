@@ -1,5 +1,6 @@
 import { app, BrowserWindow, globalShortcut, ipcMain, Menu } from 'electron'
 import path from 'path'
+import { ipcMainController } from './ipc/IPCMainController'
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -19,23 +20,15 @@ const createWindow = () => {
             label: app.name,
             submenu: [
                 {
-                    label: 'Increment',
-                    click: () => win.webContents.send('update-counter', 1),
-                },
-                {
-                    label: 'Decrement',
-                    click: () => win.webContents.send('update-counter', -1),
-                },
-                {
                     label: 'DevTools',
                     click: () => win.webContents.openDevTools(),
                 },
             ],
         },
     ])
-
     Menu.setApplicationMenu(menu)
 
+    ipcMainController.registerListeners()
     win.on('ready-to-show', () => win.webContents.openDevTools())
     win.loadFile(path.resolve(__dirname, 'index.html'))
 }

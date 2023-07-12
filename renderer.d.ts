@@ -1,8 +1,8 @@
 import { IpcMainEvent } from 'electron'
 
 export interface ElectronAPI {
-    openFile: () => Promise<Buffer>
-    onUpdateCounter: (callback: CounterCallback) => Promise<void>
+    readFiles: (filePaths: string[]) => Promise<FileItem[]>
+    openDialog: () => Promise<string[] | null>
 }
 
 type CounterCallback = (event: IpcMainEvent, value: number) => void
