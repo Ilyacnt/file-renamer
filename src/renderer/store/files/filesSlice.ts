@@ -38,6 +38,7 @@ const filesSlice = createSlice({
         },
         removeFile: (state, action: PayloadAction<string>) => {
             state.files = state.files.filter((item) => item.id !== action.payload)
+            state.currentIndex = String(Number(state.currentIndex) - 1);
         },
         increaseCurrentIndex: (state) => {
             state.currentIndex = String(Number(state.currentIndex) + 1);

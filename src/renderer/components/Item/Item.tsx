@@ -20,7 +20,6 @@ const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
             dispatch(removeNaming(id))
         }
     }
-    debugger
     return (
         <div className={cn(currentId === id ? styles.ActiveItem : styles.Item, { [styles.Selected]: selected })}>
             <div className={styles.Heading}>
