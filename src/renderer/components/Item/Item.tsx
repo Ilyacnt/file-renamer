@@ -11,7 +11,7 @@ import { removeNaming } from '@/store/namings/namingsSlice'
 
 const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
     const dispatch = useAppDispatch()
-    const { currentIndex } = useAppSelector((state) => state.files)
+    const { currentIndex, currentId } = useAppSelector((state) => state.files)
 
     const deleteHandler = (id: string) => {
         if (type === 'file') {
@@ -22,7 +22,7 @@ const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
     }
     debugger
     return (
-        <div className={cn(Number(currentIndex) === Number(id) ? styles.ActiveItem : styles.Item, { [styles.Selected]: selected })}>
+        <div className={cn(currentId === id ? styles.ActiveItem : styles.Item, { [styles.Selected]: selected })}>
             <div className={styles.Heading}>
                 {type === 'file' ? <FileIcon /> : <NamingIcon />}
                 <p className={styles.Name}>{name}</p>

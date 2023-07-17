@@ -6,13 +6,15 @@ export interface FilesState {
     loading: boolean
     error: string | null
     currentIndex: string
+    currentId: string | null
 }
 
 const initialState: FilesState = {
     files: [],
     loading: false,
     error: null,
-    currentIndex: "0"
+    currentIndex: "0",
+    currentId: null
 }
 
 const filesSlice = createSlice({

@@ -20,9 +20,9 @@
 }
 
 .leftSlide {
-    height: 150px;
+    height: 250px;
     background-color: rgb(41, 80, 67);
-    width: 150px;
+    width: 250px;
     position: absolute;
     transform: translate(-50%);
     border: 1px white solid;
@@ -32,9 +32,9 @@
 }
 
 .activeSlide {
-    height: 180px;
+    height: 280px;
     background-color: rgb(41, 80, 67);
-    width: 180px;
+    width: 280px;
     position: absolute;
     border: 1px white solid;
     color: red;
@@ -43,9 +43,9 @@
 }
 
 .rightSlide {
-    height: 150px;
+    height: 250px;
     background-color: rgb(98, 104, 102);
-    width: 150px;
+    width: 250px;
     position: absolute;
     transform: translate(50%);
     border: 1px white solid;
@@ -56,9 +56,9 @@
 }
 
 .nextSlide {
-    height: 150px;
+    height: 250px;
     background-color: aquamarine;
-    width: 150px;
+    width: 250px;
     position: absolute;
     border: 1px black solid;
     color: red;
