@@ -5,12 +5,14 @@ export interface FilesState {
     files: FileItem[]
     loading: boolean
     error: string | null
+    currentIndex: string
 }
 
 const initialState: FilesState = {
     files: [],
     loading: false,
     error: null,
+    currentIndex: "0"
 }
 
 const filesSlice = createSlice({
@@ -35,9 +37,20 @@ const filesSlice = createSlice({
         removeFile: (state, action: PayloadAction<string>) => {
             state.files = state.files.filter((item) => item.id !== action.payload)
         },
+        increaseCurrentIndex: (state) => {
+            state.currentIndex = String(Number(state.currentIndex) + 1);
+        },
+        decreaseCurrentIndex: (state) => {
+            state.currentIndex = String(Number(state.currentIndex) - 1);
+        },
+        setCurrentIndex: (state, action: PayloadAction<string>) => {
+            state.currentIndex = action.payload;
+        }
+
     },
 })
 
-export const { getFilesStart, getFilesSucces, getFilesFailure, addFiles, removeFile } =
+export const { getFilesStart, getFilesSucces, getFilesFailure, addFiles, removeFile, increaseCurrentIndex,
+    decreaseCurrentIndex, setCurrentIndex } =
     filesSlice.actions
 export const filesReducer = filesSlice.reducer

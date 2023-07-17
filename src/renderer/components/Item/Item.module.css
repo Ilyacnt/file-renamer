@@ -15,10 +15,6 @@
     background: rgba(255, 255, 255, 0.3);
 }
 
-.Item:active {
-    background: rgba(255, 255, 255, 0.5);
-}
-
 .Selected {
     outline: 2px solid var(--primary-color);
 }
@@ -52,4 +48,17 @@
 .Buttons {
     display: flex;
     gap: 5px;
+}
+
+.ActiveItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: rgba(228, 98, 98, 0.5);
+    padding: 10px;
+    width: 100%;
 }

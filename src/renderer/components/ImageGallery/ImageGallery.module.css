@@ -3,4 +3,96 @@
     align-self: stretch;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.1);
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GalleryContent {
+    width: 300px;
+    border: chocolate 1px solid;
+    height: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leftSlide {
+    height: 150px;
+    background-color: rgb(41, 80, 67);
+    width: 150px;
+    position: absolute;
+    transform: translate(-50%);
+    border: 1px white solid;
+    color: red;
+    transition: all 0.3s linear;
+    z-index: 1;
+}
+
+.activeSlide {
+    height: 180px;
+    background-color: rgb(41, 80, 67);
+    width: 180px;
+    position: absolute;
+    border: 1px white solid;
+    color: red;
+    transition: all 0.3s linear;
+    z-index: 9999;
+}
+
+.rightSlide {
+    height: 150px;
+    background-color: rgb(98, 104, 102);
+    width: 150px;
+    position: absolute;
+    transform: translate(50%);
+    border: 1px white solid;
+    color: red;
+    transition: all 0.3s linear;
+    text-align: right;
+    z-index: 1;
+}
+
+.nextSlide {
+    height: 150px;
+    background-color: aquamarine;
+    width: 150px;
+    position: absolute;
+    border: 1px black solid;
+    color: red;
+    opacity: 0;
+    transition: all 0s linear;
+    z-index: 0;
+}
+
+.btns {
+    margin-top: 180px;
+}
+
+.activeSlide img,
+.leftSlide img,
+.rightSlide img,
+.nextSlide img {
+    width: 120px;
+    height: 120px;
+}
+
+@keyframes wobble {
+    25% {
+        z-index: 1;
+    }
+
+    50% {
+        z-index: 1;
+    }
+
+    75% {
+        z-index: 9999;
+    }
+
+    100% {
+        z-index: 9999;
+    }
 }

@@ -5,12 +5,13 @@ import cn from 'classnames'
 import MicroButton from '../../UI/MicroButton/MicroButton'
 import CaretRightIcon from '@/assets/caret-right.svg'
 import DeleteCrossIcon from '@/assets/delete-cross.svg'
-import { useAppDispatch } from '@/store/hooks'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { removeFile } from '@/store/files/filesSlice'
 import { removeNaming } from '@/store/namings/namingsSlice'
 
 const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
     const dispatch = useAppDispatch()
+    const { currentIndex } = useAppSelector((state) => state.files)
 
     const deleteHandler = (id: string) => {
         if (type === 'file') {
@@ -19,9 +20,9 @@ const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
             dispatch(removeNaming(id))
         }
     }
-
+    debugger
     return (
-        <div className={cn(styles.Item, { [styles.Selected]: selected })}>
+        <div className={cn(Number(currentIndex) === Number(id) ? styles.ActiveItem : styles.Item, { [styles.Selected]: selected })}>
             <div className={styles.Heading}>
                 {type === 'file' ? <FileIcon /> : <NamingIcon />}
                 <p className={styles.Name}>{name}</p>
