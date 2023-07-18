@@ -7,14 +7,11 @@ import CircleSaveIcon from '@/assets/circle-save.svg'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import {
-    decreaseCurrentIndex,
-    increaseCurrentIndex,
-    setCurrentFile,
-    setCurrentIndex,
+    setCurrentFile
 } from '@/store/files/filesSlice'
 
 const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
-    const { files, currentIndex, currentFile } = useAppSelector((state) => state.files)
+    const { files, currentFile } = useAppSelector((state) => state.files)
     const [isDisabled, setIsDisabled] = useState(false)
     const dispatch = useAppDispatch()
     let index = files.findIndex((file) => file.id === currentFile)
@@ -31,7 +28,6 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
             if (files.length > 0) {
                 index += 1
                 disabledBtns()
-                //dispatch(increaseCurrentIndex())
                 if (index > lastIndex) {
                     let id = files[0].id
                     dispatch(setCurrentFile(id))
@@ -48,7 +44,6 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
             if (files.length > 0) {
                 index -= 1
                 disabledBtns()
-                //dispatch(decreaseCurrentIndex())
                 if (index < 0) {
                     let id = files[lastIndex].id
                     dispatch(setCurrentFile(id))
@@ -65,12 +60,12 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
         <div className={styles.ItemControls}>
             {type === 'files' ? (
                 <div className={styles.ControlsButtons}>
-                    <Button type={'secondary'} onClick={nextItem} disabled={isDisabled}>
+                    <Button type={'secondary'} onClick={prevItem} disabled={isDisabled}>
                         <CaretLeftIcon />
                         Prev
                     </Button>
                     <Button type={'primary'}>Rename</Button>
-                    <Button type={'secondary'} onClick={prevItem} disabled={isDisabled}>
+                    <Button type={'secondary'} onClick={nextItem} disabled={isDisabled}>
                         Next
                         <CaretRightIcon />
                     </Button>
