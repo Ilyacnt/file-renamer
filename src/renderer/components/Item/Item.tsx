@@ -11,7 +11,8 @@ import { removeNaming } from '@/store/namings/namingsSlice'
 
 const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
     const dispatch = useAppDispatch()
-    const { currentFile } = useAppSelector((state) => state.files)
+    const { currentFile, files} = useAppSelector((state) => state.files)
+    const index = files.findIndex((file) => file.id === currentFile)
     const deleteHandler = (id: string) => {
         if (type === 'file') {
             dispatch(removeFile(id))
