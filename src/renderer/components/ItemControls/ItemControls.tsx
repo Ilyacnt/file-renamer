@@ -14,11 +14,10 @@ import {
 } from '@/store/files/filesSlice'
 
 const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
-    const { files, currentIndex, currentId } = useAppSelector((state) => state.files)
+    const { files, currentIndex, currentFile } = useAppSelector((state) => state.files)
     const [isDisabled, setIsDisabled] = useState(false)
     const dispatch = useAppDispatch()
-    let index = files.findIndex((file) => file.id === currentId)
-    const [indexFile, setIndexFile] = useState(index)
+    let index = files.findIndex((file) => file.id === currentFile)
     let lastIndex = files.length - 1
 
     const disabledBtns = () => {
@@ -30,17 +29,15 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
     const nextItem = () => {
         if (type === 'files') {
             if (files.length > 0) {
-                setIndexFile((prev) => prev + 1)
+                index += 1
                 disabledBtns()
                 //dispatch(increaseCurrentIndex())
-                if (indexFile > lastIndex) {
+                if (index > lastIndex) {
                     let id = files[0].id
                     dispatch(setCurrentFile(id))
-                    debugger
                 } else {
-                    let id = files[indexFile].id
+                    let id = files[index].id
                     dispatch(setCurrentFile(id))
-                    debugger
                 }
             }
         } else {
@@ -49,17 +46,15 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
     const prevItem = () => {
         if (type === 'files') {
             if (files.length > 0) {
-                setIndexFile((prev) => prev - 1)
+                index -= 1
                 disabledBtns()
                 //dispatch(decreaseCurrentIndex())
-                if (indexFile < 0) {
+                if (index < 0) {
                     let id = files[lastIndex].id
                     dispatch(setCurrentFile(id))
-                    debugger
                 } else {
-                    let id = files[indexFile].id
+                    let id = files[index].id
                     dispatch(setCurrentFile(id))
-                    debugger
                 }
             }
         } else {
