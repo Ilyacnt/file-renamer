@@ -6,9 +6,13 @@
     gap: 3px;
     cursor: pointer;
     border-radius: 5px;
-    background: var(--secondary-color);
     padding: 10px;
     width: 100%;
+    background: var(--secondary-color);
+}
+
+.ActiveItem {
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .Item:hover {
@@ -48,17 +52,4 @@
 .Buttons {
     display: flex;
     gap: 5px;
-}
-
-.ActiveItem {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-    cursor: pointer;
-    border-radius: 5px;
-    background: rgba(228, 98, 98, 0.5);
-    padding: 10px;
-    width: 100%;
 }

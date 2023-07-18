@@ -5,7 +5,7 @@ export interface FilesState {
     files: FileItem[]
     loading: boolean
     error: string | null
-    currentIndex: string
+    currentIndex: number
     currentId: string | null
 }
 
@@ -13,7 +13,7 @@ const initialState: FilesState = {
     files: [],
     loading: false,
     error: null,
-    currentIndex: "0",
+    currentIndex: 0,
     currentId: null
 }
 
@@ -35,19 +35,24 @@ const filesSlice = createSlice({
         },
         addFiles: (state, action: PayloadAction<FileItem[]>) => {
             state.files = [...state.files, ...action.payload]
+            state.currentId = state.files.length === 1 ? String(state.files[state.currentIndex].id) : state.currentId
         },
         removeFile: (state, action: PayloadAction<string>) => {
             state.files = state.files.filter((item) => item.id !== action.payload)
-            state.currentIndex = String(Number(state.currentIndex) - 1);
+            state.currentIndex = state.currentIndex - 1;
+            state.currentId = state.files.length > 0 ? String(state.files[state.currentIndex].id) : state.currentId;
         },
         increaseCurrentIndex: (state) => {
-            state.currentIndex = String(Number(state.currentIndex) + 1);
+            state.currentIndex = state.currentIndex + 1;
+            state.currentId = state.currentIndex < state.files.length ? String(state.files[state.currentIndex].id) : state.currentId
         },
         decreaseCurrentIndex: (state) => {
-            state.currentIndex = String(Number(state.currentIndex) - 1);
+            state.currentIndex = state.currentIndex - 1;
+            state.currentId = state.currentIndex >= 0 ? String(state.files[state.currentIndex].id) : state.currentId
         },
-        setCurrentIndex: (state, action: PayloadAction<string>) => {
+        setCurrentIndex: (state, action: PayloadAction<number>) => {
             state.currentIndex = action.payload;
+            state.currentId = state.files.length > 0 ? String(state.files[action.payload].id) : state.currentId
         }
 
     },
