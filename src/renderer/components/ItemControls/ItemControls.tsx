@@ -26,7 +26,7 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
             setIsDisabled(false)
         }, 400)
     }
-    const nextItem = () => {
+    const prevItem = () => {
         if (type === 'files') {
             if (files.length > 0) {
                 index += 1
@@ -43,7 +43,7 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
         } else {
         }
     }
-    const prevItem = () => {
+    const nextItem = () => {
         if (type === 'files') {
             if (files.length > 0) {
                 index -= 1
