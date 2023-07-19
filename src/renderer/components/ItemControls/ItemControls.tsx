@@ -6,9 +6,7 @@ import CaretRightIcon from '@/assets/caret-right.svg'
 import CircleSaveIcon from '@/assets/circle-save.svg'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import {
-    setCurrentFile
-} from '@/store/files/filesSlice'
+import { setCurrentFile } from '@/store/files/filesSlice'
 
 const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
     const { files, currentFile } = useAppSelector((state) => state.files)
@@ -60,12 +58,12 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
         <div className={styles.ItemControls}>
             {type === 'files' ? (
                 <div className={styles.ControlsButtons}>
-                    <Button type={'secondary'} onClick={prevItem} disabled={isDisabled}>
+                    <Button type={'secondary'} onClick={nextItem} disabled={isDisabled}>
                         <CaretLeftIcon />
                         Prev
                     </Button>
                     <Button type={'primary'}>Rename</Button>
-                    <Button type={'secondary'} onClick={nextItem} disabled={isDisabled}>
+                    <Button type={'secondary'} onClick={prevItem} disabled={isDisabled}>
                         Next
                         <CaretRightIcon />
                     </Button>
