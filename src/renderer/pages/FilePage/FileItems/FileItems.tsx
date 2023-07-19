@@ -48,7 +48,7 @@ const FileItems = () => {
                 onDragOver={e => dragStartHandler(e)}
                 onDrop={e => dropHandler(e)}
                 className={styles.DropArea}>
-                    <FileIcon/>
+                    <FileIcon className={styles.FileIcon}/>
                     Drop Files Here...</div>
             ) : (
                 <div

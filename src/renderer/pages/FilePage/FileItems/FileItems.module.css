@@ -9,6 +9,10 @@
     flex-direction: column;
 }
 
+.FileIcon{
+    pointer-events: none;
+}
+
 .DropArea{
     width: 100%;
     height: 100%;
