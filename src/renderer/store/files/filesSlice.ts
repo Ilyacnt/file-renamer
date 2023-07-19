@@ -33,10 +33,6 @@ const filesSlice = createSlice({
         },
         addFiles: (state, action: PayloadAction<FileItem[]>) => {
             state.files = [...state.files, ...action.payload]
-            state.currentFile =
-                state.files.length === 1
-                    ? String(state.files[0].id)
-                    : state.currentFile
         },
         removeFile: (state, action: PayloadAction<string>) => {
             state.files = state.files.filter((item) => item.id !== action.payload)

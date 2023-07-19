@@ -3,7 +3,7 @@ import Item from '../../../components/Item/Item'
 import PlusIcon from '@/assets/plus.svg'
 import styles from './FileItems.module.css'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import { addFiles } from '@/store/files/filesSlice'
+import { addFiles, setCurrentFile } from '@/store/files/filesSlice'
 
 const FileItems = () => {
     const { files } = useAppSelector((state) => state.files)
@@ -16,6 +16,9 @@ const FileItems = () => {
             console.log(filesFromOs)
             if (filesFromOs) {
                 dispatch(addFiles(filesFromOs))
+                if (files.length === 0) {
+                    dispatch(setCurrentFile(filesFromOs[0].id))
+                }
             }
         }
     }
