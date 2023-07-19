@@ -1,3 +1,25 @@
 .PlusIcon {
     width: 100%;
 }
+
+.FilesArea{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.DropArea{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: 700px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    color: #3c8aff;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='28' ry='28' stroke='%230057FFFF' stroke-width='3' stroke-dasharray='35' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 28px;
+}

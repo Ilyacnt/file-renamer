@@ -32,7 +32,7 @@ const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
                     <MicroButton type="ghosty" onClick={() => deleteHandler(id)}>
                         <DeleteCrossIcon />
                     </MicroButton>
-                    <MicroButton type="secondary">
+                    <MicroButton type="ghosty">
                         <CaretRightIcon />
                     </MicroButton>
                 </div>
