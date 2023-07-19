@@ -22,18 +22,20 @@ const FileItems = () => {
 
     return (
         <>
-            {files.map((file) => (
-                <Item
-                    type="file"
-                    key={file.id}
-                    id={file.id}
-                    name={file.name}
-                    description={file.size}
-                />
-            ))}
             <Button className={styles.PlusIcon} type="ghosty" onClick={fileReadHandler}>
                 <PlusIcon />
             </Button>
+            <div className={styles.FilesList}>
+                {files.map((file) => (
+                    <Item
+                        type="file"
+                        key={file.id}
+                        id={file.id}
+                        name={file.name}
+                        description={file.size}
+                    />
+                ))}
+            </div>
         </>
     )
 }
