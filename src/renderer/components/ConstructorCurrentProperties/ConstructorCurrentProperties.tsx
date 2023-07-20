@@ -1,4 +1,4 @@
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'react'
+import PropertyTag from '../PropertyTag/PropertyTag'
 import styles from './ConstructorCurrentProperties.module.css'
 
 const ConstructorCurrentProperties = () => {
@@ -24,18 +24,6 @@ const ConstructorCurrentProperties = () => {
             <div className={styles.DivideLine}></div>
         </>
     )
-}
-
-const PropertyTag = ({ name }: ItemProps) => {
-    return (
-        <div className={styles.PropertyTag}>
-            <span>{name}</span>
-        </div>
-    )
-}
-
-interface ItemProps {
-    name: string
 }
 
 export default ConstructorCurrentProperties

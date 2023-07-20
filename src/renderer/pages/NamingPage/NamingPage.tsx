@@ -1,7 +1,7 @@
 import InputPageName from '../../UI/InputPageName/InputPageName'
 import ItemControls from '../../components/ItemControls/ItemControls'
 import styles from './NamingPage.module.css'
-import ConstructorCurrentProperties from './ConstructorCurrentProperties/ConstructorCurrentProperties'
+import ConstructorCurrentProperties from '../../components/ConstructorCurrentProperties/ConstructorCurrentProperties'
 
 const NamingPage = () => {
     return (
