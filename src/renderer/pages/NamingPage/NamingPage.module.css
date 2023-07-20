@@ -10,3 +10,13 @@
     background: rgba(30, 30, 30, 0.5);
     padding: 10px;
 }
+
+.NamingConstructor {
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    width: 100%;
+}
