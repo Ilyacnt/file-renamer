@@ -1,3 +1,26 @@
 .PlusIcon {
     width: 100%;
 }
+
+.FilesList {
+    display: flex;
+    position: relative;
+    flex: 1 0 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 2px 8px 2px 2px;
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
+.FilesList::-webkit-scrollbar {
+    background: rgba(30, 30, 30, 0.5);
+    width: 5px; /* ширина для вертикального скролла */
+}
+
+.FilesList::-webkit-scrollbar-thumb {
+    border-radius: 9em;
+    background: var(--secondary-color);
+}
