@@ -5,14 +5,14 @@ export interface FilesState {
     files: FileItem[]
     loading: boolean
     error: string | null
-    currentFile: string | null
+    currentFileId: string | null
 }
 
 const initialState: FilesState = {
     files: [],
     loading: false,
     error: null,
-    currentFile: null,
+    currentFileId: null,
 }
 
 const filesSlice = createSlice({
@@ -37,8 +37,8 @@ const filesSlice = createSlice({
         removeFile: (state, action: PayloadAction<string>) => {
             state.files = state.files.filter((item) => item.id !== action.payload)
         },
-        setCurrentFile: (state, action: PayloadAction<string>) => {
-            state.currentFile = action.payload
+        setCurrentFileId: (state, action: PayloadAction<string>) => {
+            state.currentFileId = action.payload
         },
     },
 })
@@ -49,6 +49,6 @@ export const {
     getFilesFailure,
     addFiles,
     removeFile,
-    setCurrentFile,
+    setCurrentFileId,
 } = filesSlice.actions
 export const filesReducer = filesSlice.reducer

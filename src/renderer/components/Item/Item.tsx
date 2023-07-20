@@ -6,24 +6,24 @@ import MicroButton from '../../UI/MicroButton/MicroButton'
 import CaretRightIcon from '@/assets/caret-right.svg'
 import DeleteCrossIcon from '@/assets/delete-cross.svg'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import { removeFile, setCurrentFile } from '@/store/files/filesSlice'
+import { removeFile, setCurrentFileId } from '@/store/files/filesSlice'
 import { removeNaming } from '@/store/namings/namingsSlice'
 
 const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
     const dispatch = useAppDispatch()
-    const { currentFile, files} = useAppSelector((state) => state.files)
-    const index = files.findIndex((file) => file.id === currentFile)
-    const lastIndex = files.length -1;
+    const { currentFileId, files } = useAppSelector((state) => state.files)
+    const index = files.findIndex((file) => file.id === currentFileId)
+    const lastIndex = files.length - 1
     const deleteHandler = (id: string) => {
         if (type === 'file') {
             dispatch(removeFile(id))
-            if(files.length > 0 && id === currentFile){
-                if(index + 1 <= lastIndex){
-                    let newId = files[index+1].id
-                    dispatch(setCurrentFile(newId))
-                } else if(index === lastIndex) {
+            if (files.length > 0 && id === currentFileId) {
+                if (index + 1 <= lastIndex) {
+                    let newId = files[index + 1].id
+                    dispatch(setCurrentFileId(newId))
+                } else if (index === lastIndex) {
                     let newId = files[0].id
-                    dispatch(setCurrentFile(newId))
+                    dispatch(setCurrentFileId(newId))
                 }
             }
         } else if (type === 'naming') {
@@ -31,7 +31,7 @@ const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
         }
     }
     return (
-        <div className={cn(currentFile === id && styles.Selected, styles.Item)}>
+        <div className={cn(currentFileId === id && styles.Selected, styles.Item)}>
             <div className={styles.Heading}>
                 {type === 'file' ? <FileIcon /> : <NamingIcon />}
                 <p className={styles.Name}>{name}</p>

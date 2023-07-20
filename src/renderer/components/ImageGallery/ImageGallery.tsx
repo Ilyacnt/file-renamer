@@ -3,8 +3,8 @@ import styles from './ImageGallery.module.css'
 import cn from 'classnames'
 
 const ImageGallery = () => {
-    const { files, currentFile } = useAppSelector((state) => state.files)
-    let index = files.findIndex((file) => file.id === currentFile)
+    const { files, currentFileId } = useAppSelector((state) => state.files)
+    let index = files.findIndex((file) => file.id === currentFileId)
     return (
         <div className={styles.ImageGallery}>
             <div className={styles.GalleryContent}>

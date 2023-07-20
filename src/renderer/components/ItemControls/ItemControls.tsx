@@ -6,13 +6,13 @@ import CaretRightIcon from '@/assets/caret-right.svg'
 import CircleSaveIcon from '@/assets/circle-save.svg'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import { setCurrentFile } from '@/store/files/filesSlice'
+import { setCurrentFileId } from '@/store/files/filesSlice'
 
 const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
-    const { files, currentFile } = useAppSelector((state) => state.files)
+    const { files, currentFileId } = useAppSelector((state) => state.files)
     const [isDisabled, setIsDisabled] = useState(false)
     const dispatch = useAppDispatch()
-    let index = files.findIndex((file) => file.id === currentFile)
+    let index = files.findIndex((file) => file.id === currentFileId)
     let lastIndex = files.length - 1
 
     const disabledBtns = () => {
@@ -28,10 +28,10 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
                 disabledBtns()
                 if (index > lastIndex) {
                     let id = files[0].id
-                    dispatch(setCurrentFile(id))
+                    dispatch(setCurrentFileId(id))
                 } else {
                     let id = files[index].id
-                    dispatch(setCurrentFile(id))
+                    dispatch(setCurrentFileId(id))
                 }
             }
         } else {
@@ -44,10 +44,10 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
                 disabledBtns()
                 if (index < 0) {
                     let id = files[lastIndex].id
-                    dispatch(setCurrentFile(id))
+                    dispatch(setCurrentFileId(id))
                 } else {
                     let id = files[index].id
-                    dispatch(setCurrentFile(id))
+                    dispatch(setCurrentFileId(id))
                 }
             }
         } else {
