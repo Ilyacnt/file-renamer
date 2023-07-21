@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { NamingItem, PropertyTags } from '../../types/naming'
+import { NamingItem } from '../../types/naming'
 
 interface NamingsState {
     namings: NamingItem[]
