@@ -7,13 +7,18 @@ import CircleSaveIcon from '@/assets/circle-save.svg'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { setCurrentFileId } from '@/store/files/filesSlice'
+import { setCurrentNamingId } from '@/store/namings/namingsSlice'
 
 const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
     const { files, currentFileId } = useAppSelector((state) => state.files)
+    const { namings, currentNamingId } = useAppSelector((state) => state.namings)
     const [isDisabled, setIsDisabled] = useState(false)
     const dispatch = useAppDispatch()
-    let index = files.findIndex((file) => file.id === currentFileId)
-    let lastIndex = files.length - 1
+
+    let indexFile = files.findIndex((file) => file.id === currentFileId)
+    let indexNaming = namings.findIndex((naming) => naming.id === currentNamingId)
+    const lastIndexFile = files.length - 1
+    const lastIndexNaming = namings.length - 1
 
     const disabledBtns = () => {
         setIsDisabled(true)
@@ -24,33 +29,55 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
     const prevItem = () => {
         if (type === 'files') {
             if (files.length > 0) {
-                index += 1
+                indexFile += 1
                 disabledBtns()
-                if (index > lastIndex) {
+                if (indexFile > lastIndexFile) {
                     let id = files[0].id
                     dispatch(setCurrentFileId(id))
                 } else {
-                    let id = files[index].id
+                    let id = files[indexFile].id
                     dispatch(setCurrentFileId(id))
                 }
             }
-        } else {
+        } else if (type === 'naming') {
+            if (namings.length > 0) {
+                indexNaming += 1
+                disabledBtns()
+                if (indexNaming > lastIndexNaming) {
+                    let id = namings[0].id
+                    dispatch(setCurrentNamingId(id))
+                } else {
+                    let id = namings[indexNaming].id
+                    dispatch(setCurrentNamingId(id))
+                }
+            }
         }
     }
     const nextItem = () => {
         if (type === 'files') {
             if (files.length > 0) {
-                index -= 1
+                indexFile -= 1
                 disabledBtns()
-                if (index < 0) {
-                    let id = files[lastIndex].id
+                if (indexFile < 0) {
+                    let id = files[lastIndexFile].id
                     dispatch(setCurrentFileId(id))
                 } else {
-                    let id = files[index].id
+                    let id = files[indexFile].id
                     dispatch(setCurrentFileId(id))
                 }
             }
-        } else {
+        } else if (type === 'naming') {
+            if (namings.length > 0) {
+                indexNaming -= 1
+                disabledBtns()
+                if (indexNaming < 0) {
+                    let id = namings[lastIndexNaming].id
+                    dispatch(setCurrentNamingId(id))
+                } else {
+                    let id = namings[indexNaming].id
+                    dispatch(setCurrentNamingId(id))
+                }
+            }
         }
     }
 
@@ -71,7 +98,7 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
                 </div>
             ) : (
                 <div className={styles.ControlsButtons}>
-                    <Button type={'secondary'}>
+                    <Button type={'secondary'} onClick={nextItem} disabled={isDisabled}>
                         <CaretLeftIcon />
                         Prev
                     </Button>
@@ -79,7 +106,7 @@ const ItemControls: React.FC<ItemControlsProps> = ({ type }) => {
                         Save
                         <CircleSaveIcon />
                     </Button>
-                    <Button type={'secondary'}>
+                    <Button type={'secondary'} onClick={prevItem} disabled={isDisabled}>
                         Next
                         <CaretRightIcon />
                     </Button>

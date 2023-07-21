@@ -2,7 +2,7 @@ export interface NamingItem {
     id: string
     name: string
     description: string
-    constructorProperties?: CounsctructorProperty[]
+    constructorProperties: CounsctructorProperty[]
 }
 export interface PropertyTags {
     id: string
@@ -10,6 +10,7 @@ export interface PropertyTags {
 }
 
 export interface CounsctructorProperty {
+    id: string
     name: string
     type: CounsctructorPropertyTypes
     currentValue: string | null

@@ -3,7 +3,9 @@ import PropertyTag from '../PropertyTag/PropertyTag'
 import styles from './ConstructorCurrentProperties.module.css'
 
 const ConstructorCurrentProperties = () => {
-    const { propertyTags } = useAppSelector((state) => state.namings)
+    const { namings, currentNamingId } = useAppSelector((state) => state.namings)
+    let index = namings.findIndex((naming) => naming.id === currentNamingId)
+    const propertyTags = namings[index].constructorProperties
     return (
         <>
             <div className={styles.DivideLine}></div>
