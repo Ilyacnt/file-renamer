@@ -4,6 +4,10 @@ export interface NamingItem {
     description: string
     constructorProperties?: CounsctructorProperty[]
 }
+export interface PropertyTags {
+    id: string
+    name: string
+}
 
 export interface CounsctructorProperty {
     name: string

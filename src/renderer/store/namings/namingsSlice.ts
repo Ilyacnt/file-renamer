@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { NamingItem } from '../../types/naming'
+import { NamingItem, PropertyTags } from '../../types/naming'
 
 interface NamingsState {
     namings: NamingItem[]
+    propertyTags: PropertyTags[]
 }
 
 const mockData: NamingItem[] = [
@@ -23,8 +24,18 @@ const mockData: NamingItem[] = [
     },
 ]
 
+const TagsBlank: PropertyTags[] = [
+    { id: '0', name: 'OFFER' },
+    { id: '1', name: 'BUYER' },
+    { id: '2', name: 'DESIGNER COLOR' },
+    { id: '3', name: 'CODE' },
+    { id: '4', name: 'TYPE' },
+    { id: '5', name: 'RES' },
+]
+
 const initialState: NamingsState = {
     namings: mockData,
+    propertyTags: TagsBlank,
 }
 
 const namingsSlice = createSlice({
