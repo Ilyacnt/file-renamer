@@ -1,0 +1,14 @@
+.Property {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.PropertyTitle {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    text-align: left;
+}
