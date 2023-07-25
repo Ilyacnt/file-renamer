@@ -23,7 +23,6 @@
 .PropertyItem {
     display: flex;
     align-items: center;
-    padding-right: 10px;
 }
 
 .LinkBlock {
@@ -40,5 +39,6 @@
 .Additions {
     display: flex;
     align-items: center;
+    cursor: pointer;
     margin-right: 10px;
 }

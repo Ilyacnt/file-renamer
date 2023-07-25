@@ -58,16 +58,29 @@ const namingsSlice = createSlice({
         setTypeOfProperty: (state, action) => {
             let indexNaming = action.payload.indexNaming
             let indexType = action.payload.indexType
-            state.namings[indexNaming].constructorProperties[indexType].type = action.payload.type
+            state.namings[indexNaming].constructorProperties[indexType].type =
+                action.payload.currentValue
         },
         setNameOfProperty: (state, action) => {
             let indexNaming = action.payload.indexNaming
             let indexType = action.payload.indexType
             state.namings[indexNaming].constructorProperties[indexType].name = action.payload.name
         },
+        setValuesDataOfProperty: (state, action) => {
+            let indexNaming = action.payload.indexNaming
+            let indexType = action.payload.indexType
+            state.namings[indexNaming].constructorProperties[indexType].valuesData =
+                action.payload.value
+        },
     },
 })
 
-export const { addNaming, removeNaming, setCurrentNamingId, setTypeOfProperty, setNameOfProperty } =
-    namingsSlice.actions
+export const {
+    addNaming,
+    removeNaming,
+    setCurrentNamingId,
+    setTypeOfProperty,
+    setNameOfProperty,
+    setValuesDataOfProperty,
+} = namingsSlice.actions
 export const namingsReducer = namingsSlice.reducer
