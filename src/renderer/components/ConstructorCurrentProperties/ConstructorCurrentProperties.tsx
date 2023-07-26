@@ -12,9 +12,18 @@ const ConstructorCurrentProperties = ({ currentNaming }: ConstructorProps) => {
                 <span>Constructor</span>
             </div>
             <div className={styles.NamingConstructor}>
-                {propertyTags.map((tag) => (
-                    <PropertyTag name={tag.name} key={tag.id} id={tag.id} />
-                ))}
+                {propertyTags.map((tag) => {
+                    let propertyIndex = propertyTags.findIndex((property) => property.id === tag.id)
+                    return (
+                        <PropertyTag
+                            name={tag.name}
+                            key={tag.id}
+                            id={tag.id}
+                            namingIndex={currentNaming}
+                            propertyIndex={propertyIndex}
+                        />
+                    )
+                })}
             </div>
             <div className={styles.DivideLine}></div>
         </>

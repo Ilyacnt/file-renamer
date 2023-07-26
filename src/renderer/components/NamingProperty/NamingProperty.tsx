@@ -7,8 +7,23 @@ import DeleteCrossIcon from '@/assets/delete-cross.svg'
 import CaretDownIcon from '@/assets/caret-down.svg'
 import CaretUpIcon from '@/assets/caret-up.svg'
 import { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { setAdditionalDataOfProperty, setValuesDataOfProperty } from '@/store/namings/namingsSlice'
+import ValuesData from '../ValuesData/ValuesData'
 
-const NamingProperty = ({ id, name, type, currentValue, valuesData }: NamingPropertyProps) => {
+const NamingProperty = ({
+    id,
+    name,
+    type,
+    currentValue,
+    valuesData,
+    namingIndex,
+    additionalData,
+}: NamingPropertyProps) => {
+    const { namings } = useAppSelector((state) => state.namings)
+    const [additionsVisible, setAdditionsVisible] = useState<boolean>(false)
+    const dispatch = useAppDispatch()
+
     let ValuesDataBlank = [
         { id: 0, type: 'googleSheets' },
         { id: 1, type: 'plainText' },
@@ -19,7 +34,10 @@ const NamingProperty = ({ id, name, type, currentValue, valuesData }: NamingProp
         { id: 2, type: 'simpleText' },
         { id: 3, type: 'resolution' },
     ]
-    const [additionsVisible, setAdditionsVisible] = useState<boolean>(false)
+
+    let propertyIndex = namings[namingIndex].constructorProperties.findIndex(
+        (property) => property.id === id
+    )
 
     useEffect(() => {
         if (valuesData) {
@@ -28,6 +46,27 @@ const NamingProperty = ({ id, name, type, currentValue, valuesData }: NamingProp
             } else setAdditionsVisible(false)
         }
     }, [valuesData])
+
+    useEffect(() => {
+        if (type !== 'selectData') {
+            dispatch(
+                setValuesDataOfProperty({
+                    indexNaming: namingIndex,
+                    indexType: propertyIndex,
+                    currentValue: undefined,
+                })
+            )
+            dispatch(
+                setAdditionalDataOfProperty({
+                    indexNaming: namingIndex,
+                    indexType: propertyIndex,
+                    value: undefined,
+                })
+            )
+            setAdditionsVisible(false)
+        }
+    }, [type])
+
     return (
         <div className={styles.PropertyBlock}>
             <div className={styles.MainProperties}>
@@ -40,10 +79,22 @@ const NamingProperty = ({ id, name, type, currentValue, valuesData }: NamingProp
                     </div>
                     <div className={styles.PropertyItem}>
                         <span>Name</span>
-                        <PropertyTag id={id} name={name} />
+                        <PropertyTag
+                            id={id}
+                            name={name}
+                            namingIndex={namingIndex}
+                            propertyIndex={propertyIndex}
+                        />
                     </div>
                     <div className={styles.PropertyItem}>
-                        <Select id={id} currentValue={type} options={TypeBlank} type={'type'} />
+                        <Select
+                            id={id}
+                            currentValue={type}
+                            options={TypeBlank}
+                            type={'type'}
+                            namingIndex={namingIndex}
+                            propertyIndex={propertyIndex}
+                        />
                     </div>
                     {type === 'selectData' && (
                         <div className={styles.PropertyItem}>
@@ -52,6 +103,18 @@ const NamingProperty = ({ id, name, type, currentValue, valuesData }: NamingProp
                                 currentValue={valuesData ? valuesData : '    '}
                                 options={ValuesDataBlank}
                                 type={'data'}
+                                namingIndex={namingIndex}
+                                propertyIndex={propertyIndex}
+                            />
+                        </div>
+                    )}
+                    {type === 'simpleText' && (
+                        <div className={styles.PropertyItem}>
+                            <span>Value</span>
+                            <ValuesData
+                                value={additionalData ? additionalData : ''}
+                                namingIndex={namingIndex}
+                                propertyIndex={propertyIndex}
                             />
                         </div>
                     )}
@@ -67,7 +130,14 @@ const NamingProperty = ({ id, name, type, currentValue, valuesData }: NamingProp
             </div>
             {additionsVisible && (
                 <div className={styles.LinkBlock}>
-                    <span>{valuesData}</span>
+                    <div className={styles.PropertyItem}>
+                        <span>{valuesData}</span>
+                        <ValuesData
+                            value={additionalData ? additionalData : ''}
+                            namingIndex={namingIndex}
+                            propertyIndex={propertyIndex}
+                        />
+                    </div>
                 </div>
             )}
         </div>
@@ -80,6 +150,8 @@ interface NamingPropertyProps {
     type: string
     currentValue: string | null
     valuesData?: string
+    namingIndex: number
+    additionalData?: string
 }
 
 export default NamingProperty

@@ -5,33 +5,27 @@ import CaretUpIcon from '@/assets/caret-up.svg'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { setTypeOfProperty, setValuesDataOfProperty } from '@/store/namings/namingsSlice'
 
-const Select = ({ id, currentValue, options, type }: SelectProps) => {
+const Select = ({ id, namingIndex, propertyIndex, currentValue, options, type }: SelectProps) => {
     const [optionVisible, setOptionVisible] = useState<boolean>(false)
     const rootEl = useRef<HTMLDivElement>(null)
-    const { namings, currentNamingId } = useAppSelector((state) => state.namings)
     const dispatch = useAppDispatch()
 
-    let indexNaming = namings.findIndex((naming) => naming.id === currentNamingId)
-
-    const setcurrentValue = (id: string, currentValue: string) => {
-        let indexcurrentValue = namings[indexNaming].constructorProperties.findIndex(
-            (property) => property.id === id
-        )
+    const setcurrentValue = (id: string, value: string) => {
         setOptionVisible(false)
         if (type === 'type') {
             dispatch(
                 setTypeOfProperty({
-                    indexNaming: indexNaming,
-                    indexType: indexcurrentValue,
-                    currentValue: currentValue,
+                    indexNaming: namingIndex,
+                    indexType: propertyIndex,
+                    currentValue: value,
                 })
             )
         } else if (type === 'data') {
             dispatch(
                 setValuesDataOfProperty({
-                    indexNaming: indexNaming,
-                    indexType: indexcurrentValue,
-                    value: currentValue,
+                    indexNaming: namingIndex,
+                    indexType: propertyIndex,
+                    value: value,
                 })
             )
         }
@@ -86,6 +80,8 @@ const Select = ({ id, currentValue, options, type }: SelectProps) => {
 
 interface SelectProps {
     id: string
+    namingIndex: number
+    propertyIndex: number
     currentValue: string
     options: options[]
     type: string

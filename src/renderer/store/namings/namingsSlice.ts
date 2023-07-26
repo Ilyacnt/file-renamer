@@ -72,6 +72,12 @@ const namingsSlice = createSlice({
             state.namings[indexNaming].constructorProperties[indexType].valuesData =
                 action.payload.value
         },
+        setAdditionalDataOfProperty: (state, action) => {
+            let indexNaming = action.payload.indexNaming
+            let indexType = action.payload.indexType
+            state.namings[indexNaming].constructorProperties[indexType].additionalData =
+                action.payload.value
+        },
     },
 })
 
@@ -82,5 +88,6 @@ export const {
     setTypeOfProperty,
     setNameOfProperty,
     setValuesDataOfProperty,
+    setAdditionalDataOfProperty,
 } = namingsSlice.actions
 export const namingsReducer = namingsSlice.reducer

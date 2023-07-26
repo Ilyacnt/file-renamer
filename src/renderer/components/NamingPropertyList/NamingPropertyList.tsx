@@ -20,6 +20,8 @@ const NamingPropertyList = ({ currentNaming }: PropertyProps) => {
                             type={tag.type}
                             currentValue={tag.currentValue}
                             valuesData={tag.valuesData}
+                            namingIndex={currentNaming}
+                            additionalData={tag.additionalData}
                         />
                     )
                 })}

@@ -3,21 +3,15 @@ import { setNameOfProperty } from '@/store/namings/namingsSlice'
 import { SetStateAction, useState } from 'react'
 import styles from './PropertyTag.module.css'
 
-const PropertyTag = ({ id, name }: ItemProps) => {
-    const { namings, currentNamingId } = useAppSelector((state) => state.namings)
+const PropertyTag = ({ id, name, namingIndex, propertyIndex }: ItemProps) => {
     const dispatch = useAppDispatch()
     const [isChange, setIsChange] = useState(false)
 
-    let indexNaming = namings.findIndex((naming) => naming.id === currentNamingId)
-
     const inputChange = (event: { target: { value: SetStateAction<string> } }) => {
-        let indexType = namings[indexNaming].constructorProperties.findIndex(
-            (property) => property.id === id
-        )
         dispatch(
             setNameOfProperty({
-                indexNaming: indexNaming,
-                indexType: indexType,
+                indexNaming: namingIndex,
+                indexType: propertyIndex,
                 name: event.target.value,
             })
         )
@@ -44,6 +38,8 @@ const PropertyTag = ({ id, name }: ItemProps) => {
 interface ItemProps {
     id: string
     name: string
+    namingIndex: number
+    propertyIndex: number
 }
 
 export default PropertyTag
