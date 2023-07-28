@@ -1,5 +1,7 @@
 import { useAppSelector } from '@/store/hooks'
+import Button from '@/UI/Button/Button'
 import NamingProperty from '../NamingProperty/NamingProperty'
+import PlusIcon from '@/assets/plus.svg'
 import styles from './NamingPropertyList.module.css'
 
 const NamingPropertyList = ({ currentNaming }: PropertyProps) => {
@@ -26,6 +28,9 @@ const NamingPropertyList = ({ currentNaming }: PropertyProps) => {
                     )
                 })}
             </div>
+            <Button className={styles.PlusIcon} type="ghosty">
+                <PlusIcon />
+            </Button>
         </>
     )
 }
