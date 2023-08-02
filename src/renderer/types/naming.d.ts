@@ -9,7 +9,7 @@ export interface CounsctructorProperty {
     id: string
     name: string
     type: CounsctructorPropertyTypes
-    currentValue: string | null
+    currentValue?: string
     valuesData?: string
     additionalData?: string
 }

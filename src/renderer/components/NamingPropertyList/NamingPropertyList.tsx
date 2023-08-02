@@ -13,20 +13,18 @@ const NamingPropertyList = ({ currentNaming }: PropertyProps) => {
                 <span>Property</span>
             </div>
             <div className={styles.Property}>
-                {propertyTags.map((tag) => {
-                    return (
-                        <NamingProperty
-                            key={tag.id}
-                            id={tag.id}
-                            name={tag.name}
-                            type={tag.type}
-                            currentValue={tag.currentValue}
-                            valuesData={tag.valuesData}
-                            namingIndex={currentNaming}
-                            additionalData={tag.additionalData}
-                        />
-                    )
-                })}
+                {propertyTags.map((tag) => (
+                    <NamingProperty
+                        key={tag.id}
+                        id={tag.id}
+                        name={tag.name}
+                        type={tag.type}
+                        currentValue={tag.currentValue}
+                        valuesData={tag.valuesData}
+                        namingIndex={currentNaming}
+                        additionalData={tag.additionalData}
+                    />
+                ))}
             </div>
             <Button className={styles.PlusIcon} type="ghosty">
                 <PlusIcon />

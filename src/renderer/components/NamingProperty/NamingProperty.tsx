@@ -9,7 +9,7 @@ import CaretUpIcon from '@/assets/caret-up.svg'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { setAdditionalDataOfProperty, setValuesDataOfProperty } from '@/store/namings/namingsSlice'
-import ValuesData from '../ValuesData/ValuesData'
+import ValuesInput from '../ValuesData/ValuesInput'
 
 const NamingProperty = ({
     id,
@@ -23,6 +23,9 @@ const NamingProperty = ({
     const { namings } = useAppSelector((state) => state.namings)
     const [additionsVisible, setAdditionsVisible] = useState<boolean>(false)
     const dispatch = useAppDispatch()
+    let NewValuesData = valuesData ? valuesData : ' '
+    let NewAdditionalData = additionalData ? additionalData : ' '
+    let NewCurrentValue = currentValue ? currentValue : ''
 
     let ValuesDataBlank = [
         { id: 0, type: 'googleSheets' },
@@ -40,11 +43,7 @@ const NamingProperty = ({
     )
 
     useEffect(() => {
-        if (valuesData) {
-            if (valuesData.length > 0) {
-                setAdditionsVisible(true)
-            } else setAdditionsVisible(false)
-        }
+        valuesData && valuesData.length > 0 ? setAdditionsVisible(true) : setAdditionsVisible(false)
     }, [valuesData])
 
     useEffect(() => {
@@ -100,7 +99,7 @@ const NamingProperty = ({
                         <div className={styles.PropertyItem}>
                             <Select
                                 id={id}
-                                currentValue={valuesData ? valuesData : '    '}
+                                currentValue={NewValuesData}
                                 options={ValuesDataBlank}
                                 type={'data'}
                                 namingIndex={namingIndex}
@@ -111,10 +110,11 @@ const NamingProperty = ({
                     {type === 'simpleText' && (
                         <div className={styles.PropertyItem}>
                             <span>Value</span>
-                            <ValuesData
-                                value={additionalData ? additionalData : ''}
+                            <ValuesInput
+                                value={NewAdditionalData}
                                 namingIndex={namingIndex}
                                 propertyIndex={propertyIndex}
+                                type={'additionalData'}
                             />
                         </div>
                     )}
@@ -128,14 +128,15 @@ const NamingProperty = ({
                     </MicroButton>
                 </div>
             </div>
-            {additionsVisible && (
+            {additionsVisible && valuesData && (
                 <div className={styles.LinkBlock}>
                     <div className={styles.PropertyItem}>
                         <span>{valuesData}</span>
-                        <ValuesData
-                            value={additionalData ? additionalData : ''}
+                        <ValuesInput
+                            value={NewCurrentValue}
                             namingIndex={namingIndex}
                             propertyIndex={propertyIndex}
+                            type={'currentValue'}
                         />
                     </div>
                 </div>
@@ -148,7 +149,7 @@ interface NamingPropertyProps {
     id: string
     name: string
     type: string
-    currentValue: string | null
+    currentValue?: string
     valuesData?: string
     namingIndex: number
     additionalData?: string
