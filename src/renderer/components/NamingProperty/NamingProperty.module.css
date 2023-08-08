@@ -1,0 +1,44 @@
+.PropertyBlock {
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s all linear;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    width: 100%;
+}
+
+.MainProperties {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.Properties {
+    display: flex;
+    align-items: center;
+}
+
+.PropertyItem {
+    display: flex;
+    align-items: center;
+}
+
+.LinkBlock {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.Buttons {
+    display: flex;
+    align-items: center;
+}
+
+.Additions {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px;
+}

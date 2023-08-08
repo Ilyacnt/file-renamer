@@ -2,10 +2,9 @@ import { useAppSelector } from '@/store/hooks'
 import PropertyTag from '../PropertyTag/PropertyTag'
 import styles from './ConstructorCurrentProperties.module.css'
 
-const ConstructorCurrentProperties = () => {
-    const { namings, currentNamingId } = useAppSelector((state) => state.namings)
-    let index = namings.findIndex((naming) => naming.id === currentNamingId)
-    const propertyTags = namings[index].constructorProperties
+const ConstructorCurrentProperties = ({ currentNaming }: ConstructorProps) => {
+    const { namings } = useAppSelector((state) => state.namings)
+    const propertyTags = namings[currentNaming].constructorProperties
     return (
         <>
             <div className={styles.DivideLine}></div>
@@ -13,13 +12,26 @@ const ConstructorCurrentProperties = () => {
                 <span>Constructor</span>
             </div>
             <div className={styles.NamingConstructor}>
-                {propertyTags.map((tag) => (
-                    <PropertyTag name={tag.name} key={tag.id} />
-                ))}
+                {propertyTags.map((tag) => {
+                    let propertyIndex = propertyTags.findIndex((property) => property.id === tag.id)
+                    return (
+                        <PropertyTag
+                            name={tag.name}
+                            key={tag.id}
+                            id={tag.id}
+                            namingIndex={currentNaming}
+                            propertyIndex={propertyIndex}
+                        />
+                    )
+                })}
             </div>
             <div className={styles.DivideLine}></div>
         </>
     )
+}
+
+interface ConstructorProps {
+    currentNaming: number
 }
 
 export default ConstructorCurrentProperties

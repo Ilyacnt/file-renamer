@@ -48,7 +48,7 @@ const Item = ({ id, type, name, description, selected = false }: ItemProps) => {
     return (
         <div
             className={cn(
-                currentFileId === id || (currentNamingId === id && styles.Selected),
+                (currentFileId === id || currentNamingId === id) && styles.Selected,
                 styles.Item
             )}
         >
